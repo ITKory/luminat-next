@@ -1,0 +1,237 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import "../fsd/shared/styles/legacy-reset.css";
+@import "../fsd/shared/styles/legacy-utility.css";
+@import "../fsd/shared/styles/legacy-style.css";
+
+.container-fluid {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.justify-content-end {
+  justify-content: flex-end !important;
+}
+
+.text-decoration-none {
+  text-decoration: none !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-end {
+  text-align: right !important;
+}
+
+.border-bottom {
+  border-bottom: 1px solid var(--color-green);
+}
+
+.position-relative {
+  position: relative;
+}
+
+.reletive {
+  position: relative;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12 {
+  min-width: 0;
+}
+
+.col-1 {
+  width: 8.333333%;
+}
+
+.col-2 {
+  width: 16.666667%;
+}
+
+.col-3 {
+  width: 25%;
+}
+
+.col-4 {
+  width: 33.333333%;
+}
+
+.col-5 {
+  width: 41.666667%;
+}
+
+.col-6 {
+  width: 50%;
+}
+
+.col-7 {
+  width: 58.333333%;
+}
+
+.col-8 {
+  width: 66.666667%;
+}
+
+.col-9 {
+  width: 75%;
+}
+
+.col-10 {
+  width: 83.333333%;
+}
+
+.col-11 {
+  width: 91.666667%;
+}
+
+.col-12 {
+  width: 100%;
+}
+
+.offset-1 {
+  margin-left: 8.333333%;
+}
+
+.offset-2 {
+  margin-left: 16.666667%;
+}
+
+.offset-3 {
+  margin-left: 25%;
+}
+
+.order-1 {
+  order: 1;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 20;
+  display: block;
+  min-width: 12rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 0;
+  list-style: none;
+  border: 1px solid rgba(64, 66, 61, 0.2);
+  background: var(--color-bwhite);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+}
+
+.dropdown-item.active,
+.dropdown-item:hover {
+  background: var(--color-green);
+  color: var(--color-bwhite);
+}
+
+.form-check-input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  appearance: none;
+  border: 1px solid var(--color-green);
+  background: transparent;
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background: var(--color-green);
+}
+
+.text-success {
+  color: #198754;
+}
+
+.text-warning {
+  color: #ffc107;
+}
+
+.text-danger {
+  color: #dc3545;
+}
+
+.bg-primary {
+  background-color: #0d6efd;
+}
+
+.bg-success {
+  background-color: #198754;
+}
+
+.bg-warning {
+  background-color: #ffc107;
+}
+
+.bg-info {
+  background-color: #0dcaf0;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.border-dark {
+  border-color: #212529;
+}
+
+.top-0 {
+  top: 0;
+}
+
+.right-0 {
+  right: 0;
+}
+
+.bg-image-block::before {
+  background-image: url("/images/art-2.webp");
+}
+
+.cooperation .col-6.team {
+  background-image: url("/images/team-2.png");
+}

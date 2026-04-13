@@ -1,0 +1,324 @@
+"use client"
+
+import { useState } from "react"
+import { team } from "@/entities/team/model/team"
+import { Header } from "@/widgets/layout/header"
+import { CartModal } from "@/widgets/cart/cart-modal"
+import { Footer } from "@/widgets/layout/footer"
+
+const [artDirector, lightingEngineer, conceptDesigner, producer] = team
+
+const teamRows = [
+  {
+    leftText: (
+      <>
+        Мы создаём собственные коллекции, участвуем в коллаборациях и сопровождаем частные и публичные проекты.
+      </>
+    ),
+    leftImage: { src: artDirector.image, name: artDirector.name, role: artDirector.role },
+    rightImage: { src: lightingEngineer.image, name: lightingEngineer.name, role: lightingEngineer.role },
+    rightOffset: "col-3 offset-3 df gap-32 pr-32",
+  },
+  {
+    leftImage: { src: conceptDesigner.image, name: conceptDesigner.name, role: conceptDesigner.role },
+    leftText: (
+      <>
+        Нам важно работать на стыке <br /> профессий и подходов.
+      </>
+    ),
+    rightImage: { src: producer.image, name: producer.name, role: producer.role },
+    rightOffset: "col-3 df gap-32",
+  },
+]
+
+const facts = [
+  {
+    number: "12",
+    title: "Авторских коллекций света",
+    description: (
+      <>
+        Каждая — со своей философией, эмоцией и формой. <br />
+        Мы не делаем просто линейки — мы создаём высказывания.
+      </>
+    ),
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+        <path
+          d="M9 21.875H15M12 3.875C8.68629 3.875 6 6.56129 6 9.875C6 11.0895 6.36084 12.2197 6.98117 13.1643C7.93507 14.6168 8.41161 15.3426 8.47352 15.4511C9.02428 16.416 8.92287 16.0757 8.99219 17.1846C8.99998 17.3092 9 17.4979 9 17.875C9 18.4273 9.44772 18.875 10 18.875L14 18.875C14.5523 18.875 15 18.4273 15 17.875C15 17.4979 15 17.3092 15.0078 17.1846C15.0771 16.0757 14.9751 16.416 15.5259 15.4511C15.5878 15.3426 16.0651 14.6168 17.019 13.1643C17.6394 12.2197 18.0002 11.0895 18.0002 9.875C18.0002 6.56129 15.3137 3.875 12 3.875Z"
+          stroke="#FFFEF7"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    number: "130+",
+    title: "Реализованных проектов",
+    description: (
+      <>
+        Жилые и общественные пространства, выставки, частные коллекции <br />
+        и арт-инсталляции. От квартиры до музея.
+      </>
+    ),
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+        <path
+          d="M3 11.875V20.275C3 20.8351 3 21.1146 3.10899 21.3285C3.20487 21.5167 3.35774 21.6702 3.5459 21.7661C3.7596 21.875 4.03901 21.875 4.59797 21.875L15.4014 21.875C15.9603 21.875 16.2408 21.875 16.4545 21.7661C16.6427 21.6702 16.7948 21.5171 16.8906 21.3289C16.9996 21.115 16.9996 20.835 16.9996 20.2749L17.0011 15.8756M3 11.875H10M3 11.875L3 11.4751C3 10.9151 3 10.6348 3.10899 10.4209C3.20486 10.2327 3.35774 10.0799 3.5459 9.98398C3.75977 9.87501 4.03975 9.87501 4.59961 9.87501L7 9.875M10 11.875H15.4C15.96 11.875 16.242 11.875 16.456 11.984C16.6441 12.0799 16.7948 12.2327 16.8906 12.4209C16.9996 12.6348 16.9996 12.9148 16.9996 13.4749L17.0011 15.8756M10 11.875L8.9248 10.4927C8.74861 10.2661 8.66017 10.1524 8.5498 10.0708C8.45201 9.99847 8.34303 9.94479 8.2259 9.912C8.09373 9.87501 7.9488 9.87501 7.66191 9.87501L7 9.875M7 5.875H19.4C19.9601 5.875 20.242 5.875 20.4559 5.98399C20.6441 6.07987 20.7948 6.23274 20.8906 6.4209C20.9996 6.63481 20.9996 6.91484 20.9996 7.47489V14.2749C20.9996 14.835 20.9996 15.115 20.8906 15.3289C20.7948 15.5171 20.6432 15.6702 20.4551 15.7661C20.2414 15.875 19.9613 15.875 19.4023 15.875L17.0011 15.8756M7 5.875V9.875M7 5.875L7 5.4751C7 4.91514 7 4.63479 7.10899 4.4209C7.20486 4.23274 7.35774 4.07987 7.5459 3.98399C7.75981 3.875 8.03956 3.875 8.59961 3.875H11.6615C11.9487 3.875 12.0913 3.875 12.2236 3.91201C12.3407 3.9448 12.452 3.99847 12.5498 4.0708C12.6602 4.15243 12.7486 4.26615 12.9248 4.49268L13.9999 5.87498"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    number: "7",
+    title: "Стран — география наших объектов",
+    description: (
+      <>
+        Наш свет работает в Европе, Азии и ближнем зарубежье. География расширяется <br />
+        вместе с идеей.
+      </>
+    ),
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+        <path
+          d="M3 12.875H8M3 12.875C3 17.8456 7.02944 21.875 12 21.875M3 12.875C3 7.90444 7.02944 3.875 12 3.875M8 12.875H16M8 12.875C8 17.8456 9.79086 21.875 12 21.875M8 12.875C8 7.90444 9.79086 3.875 12 3.875M16 12.875H21M16 12.875C16 7.90444 14.2091 3.875 12 3.875M16 12.875C16 17.8456 14.2091 21.875 12 21.875M21 12.875C21 7.90444 16.9706 3.875 12 3.875M21 12.875C21 17.8456 16.9706 21.875 12 21.875"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    number: "3",
+    title: "Формата работы",
+    description: (
+      <>
+        Мы создаём свои проекты, адаптируемся под задачи архитекторов <br />
+        и дизайнеров, а также разрабатываем индивидуальные решения под заказ.
+      </>
+    ),
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+        <path
+          d="M17 20.875C17 19.2181 14.7614 17.875 12 17.875C9.23858 17.875 7 19.2181 7 20.875M21 17.8754C21 16.6452 19.7659 15.5879 18 15.125M3 17.8754C3 16.6452 4.2341 15.5879 6 15.125M18 11.1111C18.6137 10.5618 19 9.7635 19 8.875C19 7.21815 17.6569 5.875 16 5.875C15.2316 5.875 14.5308 6.16385 14 6.63889M6 11.1111C5.38625 10.5618 5 9.7635 5 8.875C5 7.21815 6.34315 5.875 8 5.875C8.76835 5.875 9.46924 6.16385 10 6.63889M12 14.875C10.3431 14.875 9 13.5319 9 11.875C9 10.2181 10.3431 8.875 12 8.875C13.6569 8.875 15 10.2181 15 11.875C15 13.5319 13.6569 14.875 12 14.875Z"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    number: "∞",
+    title: "Вариантов света",
+    description: (
+      <>
+        Потому что для нас свет — это не стандарт. Это сценарий, ощущение, <br />
+        акцент, который создаётся под вас.
+      </>
+    ),
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+        <path
+          d="M17 20.875C17 19.2181 14.7614 17.875 12 17.875C9.23858 17.875 7 19.2181 7 20.875M21 17.8754C21 16.6452 19.7659 15.5879 18 15.125M3 17.8754C3 16.6452 4.2341 15.5879 6 15.125M18 11.1111C18.6137 10.5618 19 9.7635 19 8.875C19 7.21815 17.6569 5.875 16 5.875C15.2316 5.875 14.5308 6.16385 14 6.63889M6 11.1111C5.38625 10.5618 5 9.7635 5 8.875C5 7.21815 6.34315 5.875 8 5.875C8.76835 5.875 9.46924 6.16385 10 6.63889M12 14.875C10.3431 14.875 9 13.5319 9 11.875C9 10.2181 10.3431 8.875 12 8.875C13.6569 8.875 15 10.2181 15 11.875C15 13.5319 13.6569 14.875 12 14.875Z"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+]
+
+export default function AboutPage() {
+  const [isCartOpen, setIsCartOpen] = useState(false)
+
+  return (
+    <main className="bg-green about-page">
+      <Header variant="dark" onCartClick={() => setIsCartOpen(true)} />
+      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+
+      <section className="we-create mt-120">
+        <div className="container-32 df column-dir gap-40">
+          <div className="heading h-gradient-bwhite df column-dir gap-16">
+            <div className="col-12 df gap-16">
+              <h2>МЫ СОЗДАЕМ СВЕТ, В КОТОРОМ</h2>
+              <h2 className="italic">ЖИВУТ</h2>
+            </div>
+            <div className="col-8 offset-3 df gap-16">
+              <h2>ФОРМЫ,</h2>
+              <h2 className="italic">СМЫСЛЫ</h2>
+              <h2>И ТИШИНА</h2>
+            </div>
+          </div>
+          <div className="df">
+            <div className="col-2">
+              <img src="/images/futuristiceskii-magazin-s-abstraktnoi-koncepciei-i-arhitekturoi (2).webp" alt="" className="responsive-img-4-3" />
+            </div>
+            <div className="col-9 offset-1 df column-dir gap-32">
+              <div className="df jcsb">
+                <div className="df column-dir gap-16">
+                  <h6 className="text-bwhite">
+                    Мы не проектируем освещение — <br />
+                    мы проектируем восприятие.
+                  </h6>
+                  <div className="caption text-bwhite">
+                    Мы создаём световые объекты, которые меняют <br /> архитектуру не по форме, а по ощущению.
+                  </div>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 18 17" fill="none">
+                  <path
+                    d="M15.6867 7.04267C15.4267 7.04346 15.1723 6.96705 14.9557 6.82313C14.7392 6.67921 14.5702 6.47425 14.4702 6.23421C14.3703 5.99418 14.3438 5.72987 14.3942 5.47479C14.4446 5.21971 14.5696 4.98532 14.7533 4.80133C14.8754 4.67958 14.9723 4.53494 15.0383 4.3757C15.1044 4.21646 15.1384 4.04574 15.1384 3.87333C15.1384 3.70092 15.1044 3.53021 15.0383 3.37097C14.9723 3.21172 14.8754 3.06708 14.7533 2.94533L14.5493 2.74133C14.3031 2.49544 13.9693 2.35733 13.6213 2.35733C13.2733 2.35733 12.9396 2.49544 12.6933 2.74133C12.5093 2.92506 12.275 3.05004 12.0199 3.10044C11.7648 3.15083 11.5005 3.12438 11.2605 3.02442C11.0204 2.92447 10.8155 2.75551 10.6715 2.53896C10.5276 2.32241 10.4512 2.06801 10.452 1.808C10.4506 1.46153 10.3123 1.12965 10.0673 0.884656C9.82235 0.639662 9.49047 0.501404 9.144 0.5H8.856C8.50768 0.5 8.17363 0.638369 7.92733 0.884666C7.68104 1.13096 7.54267 1.46502 7.54267 1.81333C7.54346 2.07335 7.46705 2.32774 7.32313 2.54429C7.17921 2.76084 6.97425 2.9298 6.73421 3.02975C6.49418 3.12971 6.22987 3.15616 5.97479 3.10577C5.71971 3.05537 5.48532 2.93039 5.30133 2.74667C5.17958 2.62459 5.03494 2.52774 4.8757 2.46166C4.71646 2.39558 4.54574 2.36156 4.37333 2.36156C4.20092 2.36156 4.03021 2.39558 3.87097 2.46166C3.71172 2.52774 3.56708 2.62459 3.44533 2.74667L3.24133 2.95067C3.11926 3.07242 3.02241 3.21706 2.95633 3.3763C2.89024 3.53554 2.85623 3.70626 2.85623 3.87867C2.85623 4.05108 2.89024 4.22179 2.95633 4.38103C3.02241 4.54028 3.11926 4.68492 3.24133 4.80667C3.42506 4.99066 3.55004 5.22504 3.60044 5.48012C3.65083 5.73521 3.62438 5.99951 3.52442 6.23954C3.42447 6.47958 3.25551 6.68454 3.03896 6.82847C2.82241 6.97239 2.56801 7.04879 2.308 7.048C1.96153 7.0494 1.62965 7.18766 1.38466 7.43266C1.13966 7.67765 1.0014 8.00953 1 8.356V8.644C1 8.99232 1.13837 9.32637 1.38467 9.57267C1.63096 9.81896 1.96502 9.95733 2.31333 9.95733C2.57335 9.95654 2.82774 10.0329 3.04429 10.1769C3.26084 10.3208 3.4298 10.5258 3.52975 10.7658C3.62971 11.0058 3.65616 11.2701 3.60577 11.5252C3.55537 11.7803 3.43039 12.0147 3.24667 12.1987C3.12459 12.3204 3.02774 12.4651 2.96166 12.6243C2.89558 12.7835 2.86156 12.9543 2.86156 13.1267C2.86156 13.2991 2.89558 13.4698 2.96166 13.629C3.02774 13.7883 3.12459 13.9329 3.24667 14.0547L3.45067 14.2587C3.57242 14.3807 3.71706 14.4776 3.8763 14.5437C4.03554 14.6098 4.20626 14.6438 4.37867 14.6438C4.55108 14.6438 4.72179 14.6098 4.88103 14.5437C5.04028 14.4776 5.18492 14.3807 5.30667 14.2587C5.49066 14.0749 5.72504 13.95 5.98012 13.8996C6.23521 13.8492 6.49951 13.8756 6.73954 13.9756C6.97958 14.0755 7.18454 14.2445 7.32847 14.461C7.47239 14.6776 7.54879 14.932 7.548 15.192C7.5494 15.5385 7.68766 15.8704 7.93266 16.1153C8.17765 16.3603 8.50953 16.4986 8.856 16.5H9.144C9.49209 16.5 9.82594 16.3618 10.0722 16.1158C10.3185 15.8698 10.457 15.5361 10.4573 15.188C10.4565 14.928 10.5329 14.6736 10.6769 14.457C10.8208 14.2405 11.0258 14.0715 11.2658 13.9716C11.5058 13.8716 11.7701 13.8452 12.0252 13.8956C12.2803 13.946 12.5147 14.0709 12.6987 14.2547C12.8204 14.3767 12.9651 14.4736 13.1243 14.5397C13.2835 14.6058 13.4543 14.6398 13.6267 14.6398C13.7991 14.6398 13.9698 14.6058 14.129 14.5397C14.2883 14.4736 14.4329 14.3767 14.5547 14.2547L14.7587 14.0507C14.8807 13.9289 14.9776 13.7843 15.0437 13.625C15.1098 13.4658 15.1438 13.2951 15.1438 13.1227C15.1438 12.9503 15.1098 12.7795 15.0437 12.6203C14.9776 12.4611 14.8807 12.3164 14.7587 12.1947C14.5749 12.0107 14.45 11.7763 14.3996 11.5212C14.3492 11.2661 14.3756 11.0018 14.4756 10.7618C14.5755 10.5218 14.7445 10.3168 14.961 10.1729C15.1776 10.0289 15.432 9.95254 15.692 9.95333C16.0387 9.95193 16.3708 9.81349 16.6158 9.56821C16.8608 9.32292 16.9989 8.9907 17 8.644V8.356C17 8.00768 16.8616 7.67363 16.6153 7.42733C16.369 7.18104 16.035 7.04267 15.6867 7.04267Z"
+                    stroke="#BFBDAE"
+                    strokeMiterlimit="10"
+                  />
+                </svg>
+              </div>
+              <div className="df jcsb">
+                <div className="df column-dir gap-16">
+                  <h6 className="text-bwhite">
+                    Для нас свет — это высказывание, <br /> акцент, тишина или пауза.
+                  </h6>
+                  <div className="caption text-bwhite">Мы верим, что свет — это чувство.</div>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="17" viewBox="0 0 23 17" fill="none">
+                  <path
+                    d="M23.0003 13.8342V2.24994C23.0029 1.95713 22.9486 1.66666 22.8404 1.39513C22.7322 1.1236 22.5723 0.876314 22.3699 0.667397C22.1674 0.458479 21.9263 0.29202 21.6603 0.177524C21.3944 0.0630271 21.1087 0.00273541 20.8198 9.09863e-05C20.5308 -0.00255344 20.2442 0.0525012 19.9762 0.162111C19.7083 0.271722 19.4643 0.433741 19.2581 0.638919C19.0519 0.844096 18.8877 1.08841 18.7747 1.35792C18.6617 1.62743 18.6022 1.91685 18.5996 2.20966V13.8342C18.5832 14.4142 18.3442 14.965 17.9336 15.3694C17.5229 15.7738 16.9728 16 16.4001 16C15.8275 16 15.2774 15.7738 14.8667 15.3694C14.456 14.965 14.2171 14.4142 14.2007 13.8342V2.24994C14.2059 1.65858 13.9792 1.08932 13.5703 0.667397C13.1613 0.245469 12.6038 0.00543177 12.0202 9.11172e-05C11.4366 -0.00524953 10.8749 0.224544 10.4585 0.638919C10.0421 1.05329 9.80524 1.61831 9.79997 2.20966V13.8342C9.78356 14.4142 9.54464 14.965 9.13395 15.3694C8.72327 15.7738 8.17317 16 7.60052 16C7.02787 16 6.47777 15.7738 6.06709 15.3694C5.6564 14.965 5.41748 14.4142 5.40107 13.8342V2.24994C5.40634 1.65858 5.17957 1.08932 4.77065 0.667397C4.36173 0.245469 3.80416 0.0054317 3.22059 9.10517e-05C2.63702 -0.0052496 2.07526 0.224544 1.65889 0.638919C1.24251 1.05329 1.00564 1.61831 1.00037 2.20966V13.9129"
+                    stroke="#BFBDAE"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="team">
+        <div className="container-32 mt-94 df column-dir gap-48">
+          <div className="heading df gap-32">
+            <div className="col-6 df gap-16 h-gradient-bwhite">
+              <h2>СВЕЖИЙ</h2>
+              <h2 className="italic">ВЗГЛЯД</h2>
+            </div>
+            <div className="col-6">
+              <h6 className="text-bwhite">
+                Мы — архитекторы, <br /> художники, инженеры.
+              </h6>
+            </div>
+          </div>
+          <div className="df column-dir gap-32">
+            <div className="df gap-32">
+              <div className="col-6 df gap-32">
+                <div className="w-100">
+                  <p className="text-bwhite">{teamRows[0].leftText}</p>
+                </div>
+                <div className="w-100 df column-dir gap-16">
+                  <img src={teamRows[0].leftImage.src} alt="" className="responsive-img-1-1" />
+                  <div className="df column-dir text-bwhite gap-8">
+                    <h6>{teamRows[0].leftImage.name}</h6>
+                    <div className="caption">{teamRows[0].leftImage.role}</div>
+                  </div>
+                </div>
+              </div>
+              <div className={teamRows[0].rightOffset}>
+                <div className="w-100 df column-dir gap-16">
+                  <img src={teamRows[0].rightImage.src} alt="" className="responsive-img-1-1" />
+                  <div className="df column-dir text-bwhite gap-8">
+                    <h6>{teamRows[0].rightImage.name}</h6>
+                    <div className="caption">{teamRows[0].rightImage.role}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="df gap-32">
+              <div className="col-6 df gap-32">
+                <div className="w-100 df column-dir gap-16">
+                  <img src={teamRows[1].leftImage.src} alt="" className="responsive-img-1-1" />
+                  <div className="df column-dir text-bwhite gap-8">
+                    <h6>{teamRows[1].leftImage.name}</h6>
+                    <div className="caption">{teamRows[1].leftImage.role}</div>
+                  </div>
+                </div>
+                <div className="w-100">
+                  <p className="text-bwhite">{teamRows[1].leftText}</p>
+                </div>
+              </div>
+              <div className={teamRows[1].rightOffset}>
+                <div className="w-100 df column-dir gap-16 pr-32">
+                  <img src={teamRows[1].rightImage.src} alt="" className="responsive-img-1-1" />
+                  <div className="df column-dir text-bwhite gap-8">
+                    <h6>{teamRows[1].rightImage.name}</h6>
+                    <div className="caption">{teamRows[1].rightImage.role}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="facts">
+        <div className="container-32 df column-dir gap-48 mt-94">
+          <div className="heading df gap-16 col-9 offset-3 h-gradient-bwhite pl-32">
+            <h2>ФАКТЫ. ФОРМА.</h2>
+            <h2 className="italic">СВЕТ.</h2>
+          </div>
+          <div className="df column-dir gap-32">
+            {facts.map((fact) => (
+              <div key={fact.number} className="df border-bottom pb-24 gap-32">
+                <div className="col-3">
+                  <h3 className="text-bwhite">{fact.number}</h3>
+                </div>
+                <div className="col-6 df column-dir text-bwhite gap-16">
+                  <h6>{fact.title}</h6>
+                  <div className="caption">{fact.description}</div>
+                </div>
+                <div className="col-3 df jce pr-64">{fact.icon}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="connection">
+        <div className="container-32 df column-dir mt-94 gap-48 mb-32">
+          <div className="heading df gap-32">
+            <div className="col-6 df column-dir h-gradient-bwhite gap-16">
+              <h2>НАМ ПО ПУТИ С ТЕМИ,</h2>
+              <h2 className="italic">КТО ЧУВСТВУЕТ</h2>
+            </div>
+            <div className="col-6 df column-dir text-bwhite gap-8">
+              <div className="caption">
+                Мы открыты к совместной работе с архитекторами, дизайнерами, <br />
+                брендами и студиями.
+              </div>
+              <div className="caption">Вместе мы можем создавать не просто объекты, а истории.</div>
+            </div>
+          </div>
+          <div className="df gap-32 jcsb aie">
+            <div className="col-6 df column-dir gap-24">
+              <input type="email" className="input-wrapper bg-green text-bwhite" placeholder="Email" />
+              <input type="text" className="input-wrapper bg-green text-bwhite" placeholder="Ваши идеи и предложения" />
+              <div className="btn-beige-sec">Написать нам</div>
+            </div>
+            <div className="col-3">
+              <img src="/images/connection.webp" alt="" className="responsive-img-16-9" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer variant="light" />
+    </main>
+  )
+}
