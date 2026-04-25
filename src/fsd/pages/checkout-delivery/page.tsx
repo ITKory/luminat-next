@@ -4,7 +4,6 @@ import { useState } from "react"
 import { CheckoutSteps } from "@/processes/checkout/checkout-steps"
 import { OrderSummary } from "@/processes/checkout/order-summary"
 import { CartItemsList } from "@/processes/checkout/cart-items-list"
-import { cn } from "@/shared/lib/cn"
 
 type DeliveryMethod = "local" | "russia" | "pickup"
 
@@ -18,59 +17,70 @@ export default function DeliveryPage() {
   const [selectedMethod, setSelectedMethod] = useState<DeliveryMethod>("russia")
 
   return (
-    <section className="personal-info">
-      <div className="container-32 df mt-120">
-        <div className="col-7 df column-dir gap-48">
-          <h2 className="text-green">Оформление заказа</h2>
+    <section className="personal-info pb-16">
+      <div className="container-32 mt-120 grid gap-8 xl:grid-cols-[minmax(0,1fr)_22rem]">
+        <div className="flex min-w-0 flex-col gap-10">
+          <div className="space-y-3">
+            <p className="text-[0.72rem] uppercase tracking-[0.14em] text-gray">Оформление заказа</p>
+            <h1 className="text-[2.3rem] leading-none tracking-[-0.04em] text-green md:text-[3rem]">Оформление заказа</h1>
+          </div>
           <CheckoutSteps currentStep={2} />
 
-          <div className="df column-dir gap-32">
+          <div className="flex flex-col gap-8">
             <h5 className="text-green">Способы получения</h5>
-            <div className="df">
+            <div className="grid gap-3 md:grid-cols-3">
               {deliveryMethods.map((method) => (
                 <button
                   key={method.id}
                   type="button"
                   onClick={() => setSelectedMethod(method.id)}
-                  className={selectedMethod === method.id ? "w-100 btn-green" : "w-100 btn-green-sec"}
+                  className={
+                    selectedMethod === method.id
+                      ? "min-h-24 bg-green px-4 py-4 text-bwhite"
+                      : "min-h-24 border border-[rgba(81,88,98,0.18)] px-4 py-4 text-green"
+                  }
                 >
-                  <div className="caption text-center">
-                    {method.label} <br />
-                    {method.details}
+                  <div className="space-y-1 text-center">
+                    <div className="text-sm leading-5 md:text-base">{method.label}</div>
+                    <div className={selectedMethod === method.id ? "text-[0.72rem] text-bwhite/80" : "text-[0.72rem] text-bw-7"}>
+                      {method.details}
+                    </div>
                   </div>
                 </button>
               ))}
             </div>
             <h6 className="text-green">Среднее время ожидания: до 30 рабочих дней</h6>
-            <div className="df column-dir gap-8">
-              <div className="df gap-8">
-                <input type="text" className="input-wrapper bg-bw-ec text-green input-info w-100" placeholder="Выберите город" />
+            <div className="flex flex-col gap-3">
+              <div className="grid gap-3">
+                <input type="text" className="min-h-12 border border-transparent bg-bw-ec px-4 text-green placeholder:text-bw-7" placeholder="Выберите город" />
               </div>
-              <div className="df gap-8">
-                <input type="text" className="input-wrapper bg-bw-ec text-green input-info w-100" placeholder="Улица, дом" />
+              <div className="grid gap-3">
+                <input type="text" className="min-h-12 border border-transparent bg-bw-ec px-4 text-green placeholder:text-bw-7" placeholder="Улица, дом" />
               </div>
-              <div className="df gap-8">
-                <input type="text" className="input-wrapper bg-bw-ec text-green input-info w-100" placeholder="Квартира/офис" />
-                <input type="text" className="input-wrapper bg-bw-ec text-green input-info w-100" placeholder="Подъезд" />
-                <input type="text" className="input-wrapper bg-bw-ec text-green input-info w-100" placeholder="Этаж" />
+              <div className="grid gap-3 md:grid-cols-3">
+                <input type="text" className="min-h-12 border border-transparent bg-bw-ec px-4 text-green placeholder:text-bw-7" placeholder="Квартира/офис" />
+                <input type="text" className="min-h-12 border border-transparent bg-bw-ec px-4 text-green placeholder:text-bw-7" placeholder="Подъезд" />
+                <input type="text" className="min-h-12 border border-transparent bg-bw-ec px-4 text-green placeholder:text-bw-7" placeholder="Этаж" />
               </div>
             </div>
           </div>
 
-          <div className="df column-dir gap-32">
+          <div className="flex flex-col gap-4">
             <h6 className="text-green">Как вам отправить заказ?</h6>
-            <div className="df gap-16">
-              <a href="#" className="btn-link-green-sec">Отправить все вместе</a>
-              <a href="#" className="btn-link-gray-sec">Отправлять по мере готовности</a>
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <button type="button" className="w-fit border-b border-current pb-1 text-left text-green transition hover:opacity-70">
+                Отправить все вместе
+              </button>
+              <button type="button" className="w-fit text-left text-bw-7 transition hover:text-green">
+                Отправлять по мере готовности
+              </button>
             </div>
           </div>
 
           <CartItemsList />
         </div>
 
-        <div className="col-5 df column-dir order-info">
-          <OrderSummary nextStep="/checkout/payment" nextLabel="Далее" />
-        </div>
+        <OrderSummary nextStep="/checkout/payment" nextLabel="Далее" />
       </div>
     </section>
   )

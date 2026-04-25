@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { cn } from "@/shared/lib/cn"
 
 interface CheckoutStepsProps {
   currentStep: 1 | 2 | 3
@@ -12,14 +13,28 @@ const steps = [
 
 export function CheckoutSteps({ currentStep }: CheckoutStepsProps) {
   return (
-    <div className="df">
-      {steps.map(({ step, label, href }) => (
-        <div key={step} className={step === currentStep ? "border-bottom-green df aic jcc w-100" : "border-bottom df aic jcc w-100"}>
-          <Link href={href} className={step === currentStep ? "btn-link-green-sec" : "btn-link-gray-sec"}>
+    <div className="grid gap-2 md:grid-cols-3">
+      {steps.map(({ step, label, href }) => {
+        const isCurrent = step === currentStep
+        const isComplete = step < currentStep
+
+        return (
+          <Link
+            key={step}
+            href={href}
+            className={cn(
+              "inline-flex min-h-12 items-center justify-center border px-4 py-3 text-center text-sm transition md:text-base",
+              isCurrent
+                ? "border-green bg-[rgba(81,88,98,0.06)] text-green"
+                : isComplete
+                  ? "border-[rgba(81,88,98,0.2)] text-green"
+                  : "border-[rgba(81,88,98,0.14)] text-bw-7 hover:text-green"
+            )}
+          >
             {label}
           </Link>
-        </div>
-      ))}
+        )
+      })}
     </div>
   )
 }

@@ -71,7 +71,7 @@ export function CollectionsSection() {
           </div>
           <div className="col-2 df column-dir gap-16 text-greyge">
             <div className="caption">
-              Фото умный мальчик <br /> в очках скачать
+              Коллекции для жилых, <br /> общественных и арт-пространств
             </div>
           </div>
         </div>

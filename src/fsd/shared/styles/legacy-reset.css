@@ -39,7 +39,7 @@ td {
     font-size: 100%;
     font: inherit;
     color: inherit;
-    font-family: 'Futura PT';
+    font-family: inherit;
 }
 
 ol,
@@ -88,12 +88,12 @@ select {
     --font-size-base: 1.25rem;
     --font-size-caption: 1rem;
 
-    --color-green: #40423D;
+    --color-green: #515862;
     --color-bwhite: #FFFEF7 !important;
-    --color-beige: #DED6C8;
+    --color-beige: #BFBDAE;
     --color-gray: #D0D0D0;
-    --color-dark-red: #580201;
-    --color-light-red: #A71103;
+    --color-dark-red: #6A4240;
+    --color-light-red: #97706B;
     --color-greyge: #BFBDAE;
 
     --bw-1: #111111;

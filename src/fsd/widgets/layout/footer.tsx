@@ -6,22 +6,22 @@ interface FooterProps {
   variant?: "dark" | "light"
 }
 
-export function Footer({ variant = "dark" }: FooterProps) {
+export function Footer({ variant = "dark" }: Readonly<FooterProps>) {
   const isDark = variant === "dark"
   const textClass = isDark ? "text-bwhite" : "text-green"
   const bgClass = isDark ? "bg-green" : "bg-bwhite"
   const arrowSrc = isDark ? "/images/Arrow/Arrow_Up_Right_SM.svg" : "/images/Arrow_Up_Right_SM_green.svg"
-  const logoSrc = isDark ? "/images/logo_bwhite.svg" : "/images/logo.svg"
+  const logoSrc = isDark ? "/images/logo-light.svg" : "/images/logo-dark.svg"
   const navLinkClass = isDark ? "btn-link-bwhite-sec" : "btn-link-green-sec"
   const socialSuffix = isDark ? "" : "_green"
 
   return (
-    <footer className={bgClass}>
-      <div className="df column-dir py-64 container-32 gap-48">
-        <div className="col-4 df column-dir gap-24">
+    <footer className={cn( bgClass, isDark ? "site-footer--dark" : "site-footer--light")}>
+      <div className="site-footer__inner df column-dir py-64 container-32 gap-48 relative">
+        <div className="site-footer__signup col-4 df column-dir gap-24">
           <h6 className={textClass}>Подписаться</h6>
           <form className="df column-dir email-subscription">
-            <div className={cn("df jcsb", textClass)}>
+            <div className={cn("df", textClass)}>
               <label htmlFor="footer-email" className="caption">
                 Введите ваш E-mail
               </label>
@@ -43,28 +43,28 @@ export function Footer({ variant = "dark" }: FooterProps) {
           </form>
         </div>
 
-        <div className="logo df column-dir">
+        <div className="site-footer__logo logo df column-dir">
           <div className="w-100">
             <Image src={logoSrc} alt="LUMINAT" width={1600} height={220} className="w-100" />
           </div>
         </div>
 
-        <div className={cn("df gap-32 w-100", textClass)}>
+        <div className={cn("site-footer__tagline df gap-32 w-100", textClass)}>
           <div className="col-6">
-            <h6>Studio</h6>
+            <h6>STUDIO</h6>
           </div>
-          <div className="col-4">
-            <h6>of</h6>
+          <div className="justify-content-center">
+            <h6>OF</h6>
           </div>
           <div className="w-100 d-flex justify-content-end">
-            <h6 className="text-end">light</h6>
+            <h6 className="text-end">LIGHT</h6>
           </div>
         </div>
 
-        <div className="separate w-100 bg-gray" />
+        <div className="site-footer__separator separate w-100 bg-gray" />
 
-        <div className="df gap-32">
-          <div className="col-6 df column-dir gap-24">
+        <div className="site-footer__main df gap-32">
+          <div className="site-footer__contacts col-6 df column-dir gap-24">
             <div className="df column-dir gap-8">
               <div className="caption text-gray">E-mail</div>
               <p className={textClass}>info@luminat.com</p>
@@ -81,7 +81,7 @@ export function Footer({ variant = "dark" }: FooterProps) {
             </div>
           </div>
 
-          <div className="col-4 df column-dir">
+          <div className="site-footer__nav justify-content-end df column-dir">
             <Link href="/" className={navLinkClass}>Главная</Link>
             <Link href="/catalog" className={navLinkClass}>Каталог</Link>
             <Link href="/about" className={navLinkClass}>О студии</Link>
@@ -90,20 +90,16 @@ export function Footer({ variant = "dark" }: FooterProps) {
             <Link href="/terms" className={navLinkClass}>Обработка персональных данных</Link>
           </div>
 
-          <div className="w-100 df column-dir gap-12 jce aie">
-            <a href=""><Image src={`/images/Pinterest Fill${socialSuffix}.svg`} alt="Pinterest" width={24} height={24} /></a>
-            <a href=""><Image src={`/images/Tiktok Fill${socialSuffix}.svg`} alt="TikTok" width={24} height={24} /></a>
-            <a href=""><Image src={`/images/Telegram Fill${socialSuffix}.svg`} alt="Telegram" width={24} height={24} /></a>
-            <a href=""><Image src={`/images/Whatsapp Fill${socialSuffix}.svg`} alt="WhatsApp" width={24} height={24} /></a>
-            <a href=""><Image src={`/images/VK Fill${socialSuffix}.svg`} alt="VK" width={24} height={24} /></a>
+          <div className="site-footer__social w-100 df column-dir gap-12 jce aie">
+            <a href=""><Image src={`/images/Pinterest Fill${socialSuffix}.svg`} alt="Pinterest" width={32} height={32} /></a>
+            <a href=""><Image src={`/images/Tiktok Fill${socialSuffix}.svg`} alt="TikTok" width={32} height={32} /></a>
+            <a href=""><Image src={`/images/Telegram Fill${socialSuffix}.svg`} alt="Telegram" width={32} height={32} /></a>
+            <a href=""><Image src={`/images/Whatsapp Fill${socialSuffix}.svg`} alt="WhatsApp" width={32} height={32} /></a>
+            <a href=""><Image src={`/images/VK Fill${socialSuffix}.svg`} alt="VK" width={32} height={32} /></a>
           </div>
         </div>
 
-        <div className="separate w-100 bg-gray" />
-
-        <div className="col-6">
-          <p className={textClass}>© 2025 «LUMINAT» - интернет-магазин люстр и светильников</p>
-        </div>
+        <div className="site-footer__separator separate w-100 bg-gray" />
       </div>
     </footer>
   )

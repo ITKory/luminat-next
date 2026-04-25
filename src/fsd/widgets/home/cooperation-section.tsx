@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export function CooperationSection() {
   return (
     <section id="cooperation-section" className="cooperation" data-snap-section="true">
@@ -12,7 +14,9 @@ export function CooperationSection() {
               </h2>
               <h2 className="italic">МЫ ОТКРЫТЫ</h2>
             </div>
-            <div className="btn-link-green">Смотреть проекты→︎</div>
+            <Link href="/partners" className="btn-link-green">
+              Форматы партнерства→
+            </Link>
           </div>
           <p className="mb-32">
             Студия Luminat работает <br /> в коллаборации с профессиональным <br />

@@ -12,7 +12,7 @@ export default function CheckoutLayout({
   const [isCartOpen, setIsCartOpen] = useState(false)
 
   return (
-    <main className="min-h-screen bg-[#FFFEF7]">
+    <main className="min-h-screen bg-bwhite">
       <Header onCartClick={() => setIsCartOpen(true)} />
       <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       {children}

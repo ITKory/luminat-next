@@ -129,7 +129,11 @@ export default function CatalogPage() {
       <section className="sort">
         <div className="sort-item container-32 mt-16">
           <div className="dropdown">
-            <button type="button" className="dropdown-item df gap-8 text-green p-0" onClick={() => setIsSortOpen((value) => !value)}>
+            <button
+              type="button"
+              className="sort-trigger df gap-8 text-green p-0"
+              onClick={() => setIsSortOpen((value) => !value)}
+            >
               <h6 className="text-green">Сортировка</h6>
               <img src="/images/Arrow/Chevron_Down.svg" alt="" />
             </button>

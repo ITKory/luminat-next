@@ -81,51 +81,70 @@ section.about .star {
 }
 
 /* Обновленные стили для секции проектов */
+.projects {
+  position: relative;
+  overscroll-behavior-y: contain;
+}
+
 .projects-scroll-container {
   display: flex;
   height: 100vh;
   position: relative;
   overflow: hidden;
+  overscroll-behavior-y: contain;
 }
 
 .projects-images {
   width: 50%;
   height: 100vh;
   position: relative;
+  perspective: 1000px;
+  overscroll-behavior-y: contain;
 }
 
-.project-item {
+.projects-interactive .project-item {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
+  opacity: 0;
   transform: translateY(100%);
-  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-style: preserve-3d;
+  transition:
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s ease;
   z-index: 1;
-
-
 }
 
-.project-item.active {
+.projects-interactive .project-item.active {
+  opacity: 1;
   transform: translateY(0);
   z-index: 2;
 }
 
-.project-item.past {
-  transform: translateY(-100%);
+.projects-interactive .project-item.past {
+  opacity: 0.5;
+  transform: translateY(-20px);
 }
 
 .project-image-wrapper {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  position: relative;
 }
 
 .project-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(1.1);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.projects-interactive .project-item.active img {
+  transform: scale(1);
 }
 
 .project-description {
@@ -138,13 +157,17 @@ section.about .star {
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  position: sticky;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overscroll-behavior-y: contain;
 }
 
 .project-description::-webkit-scrollbar {
+  display: none;
+}
+
+.project-mobile-meta {
   display: none;
 }
 
@@ -156,9 +179,8 @@ section.about .star {
   padding-bottom: 40px;
 }
 
-/* Анимация появления контента */
 .fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
+  animation: fadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes fadeIn {
@@ -173,95 +195,77 @@ section.about .star {
   }
 }
 
-/* Адаптив для мобильных */
-@media (max-width: 768px) {
-  .projects-scroll-container {
-    flex-direction: column;
-  }
-
-  .projects-images,
-  .project-description {
-    width: 100%;
-    height: auto;
-  }
-
-  .project-item {
-    height: 60vh;
-  }
-
-  .project-description {
-    height: 40vh;
-    position: relative;
-  }
-
-  .fixed-header {
-    position: relative;
-    padding-bottom: 20px;
-  }
+.projects-static {
+  height: auto;
 }
 
-/* Параллакс эффект для изображений */
-.project-image-wrapper {
+.projects-static .projects-scroll-container {
+  height: auto;
+}
+
+.projects-static .projects-scroll-container,
+.projects-static .projects-images {
+  display: grid;
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  height: auto;
+  gap: 1.5rem;
+}
+
+.projects-static .project-item {
+  position: static;
+  opacity: 1;
+  transform: none;
+  height: auto;
+}
+
+.projects-static .project-image-wrapper {
+  height: auto;
+}
+
+.projects-static .project-item img {
+  aspect-ratio: 4 / 3;
+  transform: none;
+}
+
+.projects-static .fixed-header {
   position: relative;
+  padding-bottom: 20px;
 }
 
-.project-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.1);
-  /* Начальный масштаб для эффекта параллакса */
-  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+.projects-static .project-description {
+  display: none;
 }
 
-.project-item.active img {
-  transform: scale(1);
+.projects-static .project-mobile-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1rem;
 }
 
-/* Анимация исчезновения для описания */
-.fade-out {
-  animation: fadeOut 0.5s ease-out forwards;
+section.contact .contact-links {
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  to {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
+section.contact .contact-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-green);
+  text-decoration: none;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition: none;
 }
 
-/* Улучшенная анимация появления */
-.fade-in {
-  animation: fadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+section.contact .contact-link:hover,
+section.contact .contact-link:focus-visible {
+  color: var(--color-green);
+  text-decoration: underline;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Параллакс при скролле */
-.projects-images {
-  perspective: 1000px;
-}
-
-.project-item {
-  transform-style: preserve-3d;
+section.contact .contact-link:active {
+  color: var(--color-green);
 }
 
 
@@ -506,19 +510,15 @@ footer .separate {
 /* Стили для выпадающего фильтра */
 .filter {
   position: relative;
-  /* Для позиционирования dropdown */
 }
 
 .filter-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
+  position: static;
   background: var(--color-bwhite);
-  z-index: 1000;
   display: none;
-  max-height: 80vh;
-  overflow-y: auto;
+  width: 100%;
+  max-height: none;
+  overflow: visible;
 }
 
 .filter.active .filter-dropdown {
@@ -594,6 +594,24 @@ footer .separate {
   background-color: var(--color-bwhite);
   --bs-dropdown-link-active-bg: #40423D !important;
 
+}
+
+.sort-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: auto;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.sort-trigger:hover,
+.sort-trigger:focus-visible,
+.sort-trigger:active {
+  background: transparent;
+  color: inherit;
 }
 
 section.catalog .ellipce {
@@ -774,51 +792,12 @@ section.connection .input-wrapper {
   border-bottom-color: var(--color-bwhite) !important;
 }
 
-/* Разрешить скролл внутри секции проектов */
-#projects-section {
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  /* Предотвратить скролл родителя */
-}
-
-/* Отключить скролл для остальных секций */
-/* section:not(#projects-section) {
-  overflow: hidden;
-} */
-
-
-
-
-.project-item {
-  opacity: 0;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.project-item.active {
-  opacity: 1;
-  z-index: 10;
-}
-
-.project-item.past {
-  opacity: 0.5;
-  transform: translateY(-20px);
-}
-
 .header-hidden {
   transform: translateY(-100%);
   transition: transform 0.3s ease;
   will-change: transform;
 }
 
-
-/* Отключаем скриптовые изменения для about-page */
-/* .about-page .header-transparent,
-.about-page .header-solid,
-.about-page .header-hidden {
-  background-color: var(--color-green) !important;
-  border-bottom-color: transparent !important;
-  transform: none !important;
-} */
 
 .dotted-underline {
   border-bottom: 2px dotted;

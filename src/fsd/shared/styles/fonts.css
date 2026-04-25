@@ -1,8 +1,80 @@
 @font-face {
-  font-family: "Futura PT";
-  src: url("/fonts/FuturaPT-Light.ttf") format("truetype");
+  font-family: "Helvetica Neue Luminat";
+  src: url("/fonts/new/HelveticaNeueLight%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue Luminat";
+  src: url("/fonts/new/HelveticaNeueLightItalic%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue Luminat";
+  src: url("/fonts/new/HelveticaNeueRoman%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue Luminat";
+  src: url("/fonts/new/HelveticaNeueItalic%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue Luminat";
+  src: url("/fonts/new/HelveticaNeueMedium%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue Luminat";
+  src: url("/fonts/new/HelveticaNeueMediumItalic%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue Luminat";
+  src: url("/fonts/new/HelveticaNeueBold%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue Luminat";
+  src: url("/fonts/new/HelveticaNeueBoldItalic%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue Luminat";
+  src: url("/fonts/new/HelveticaNeueBlack%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue Luminat";
+  src: url("/fonts/new/HelveticaNeueBlackItalic%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  font-weight: 900;
+  font-style: italic;
   font-display: swap;
 }
 
@@ -16,40 +88,16 @@
 
 @font-face {
   font-family: "Futura PT";
-  src: url("/fonts/FuturaPT-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
+  src: url("/fonts/FuturaPT-BookObl.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Futura PT";
-  src: url("/fonts/FuturaPT-Demi.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Futura PT";
-  src: url("/fonts/FuturaPT-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Futura PT";
-  src: url("/fonts/FuturaPT-ExtraBold.ttf") format("truetype");
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Futura PT";
-  src: url("/fonts/FuturaPT-Heavy.ttf") format("truetype");
-  font-weight: 900;
+  src: url("/fonts/FuturaPT-Light.ttf") format("truetype");
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
@@ -63,49 +111,9 @@
 }
 
 @font-face {
-  font-family: "Futura PT";
-  src: url("/fonts/FuturaPT-BookObl.ttf") format("truetype");
+  font-family: "Futura PT Light Italic";
+  src: url("/fonts/FuturaPT-LightObl.ttf") format("truetype");
   font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Futura PT";
-  src: url("/fonts/FuturaPT-MediumObl.ttf") format("truetype");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Futura PT";
-  src: url("/fonts/FuturaPT-DemiObl.ttf") format("truetype");
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Futura PT";
-  src: url("/fonts/FuturaPT-BoldObl.ttf") format("truetype");
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Futura PT";
-  src: url("/fonts/FuturaPT-ExtraBoldObl.ttf") format("truetype");
-  font-weight: 800;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Futura PT";
-  src: url("/fonts/FuturaPT-HeavyObl.ttf") format("truetype");
-  font-weight: 900;
-  font-style: italic;
+  font-style: normal;
   font-display: swap;
 }

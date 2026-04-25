@@ -10,10 +10,16 @@ export function ContactSection() {
             </div>
             <h6>Свет начинается с диалога</h6>
           </div>
-          <div className="df">
-            <div className="w-100 btn-link-green-sec">Telegram→</div>
-            <div className="w-100 btn-link-green-sec">WhatsApp→</div>
-            <div className="w-100 btn-link-green-sec">VK→</div>
+          <div className="df contact-links">
+            <a href="https://t.me" target="_blank" rel="noreferrer" className="contact-link w-20">
+              Telegram →
+            </a>
+            <a href="https://wa.me" target="_blank" rel="noreferrer" className="contact-link w-30">
+              WhatsApp →
+            </a>
+            <a href="https://vk.com" target="_blank" rel="noreferrer" className="contact-link w-30">
+              VK →
+            </a>
           </div>
         </div>
         <div className="col-6 df column-dir gap-32">

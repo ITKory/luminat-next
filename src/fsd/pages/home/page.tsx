@@ -12,29 +12,30 @@ import { ProcessSection } from "@/widgets/home/process-section"
 import { CooperationSection } from "@/widgets/home/cooperation-section"
 import { FAQSection } from "@/widgets/home/faq-section"
 import { ContactSection } from "@/widgets/home/contact-section"
-import { SmoothSectionScroll } from "@/widgets/home/smooth-section-scroll"
+import { SmoothSectionScroll } from "@/widgets/home/smooth-section-scroll";
 
 export default function HomePage() {
   const [isCartOpen, setIsCartOpen] = useState(false)
 
   return (
     <main className="bg-bwhite">
-      <SmoothSectionScroll />
       <Header onCartClick={() => setIsCartOpen(true)} />
       <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
 
-      <HeroSection />
-      <AboutSection />
-      <CollectionsSection />
-      <ProjectsSection />
-      <ProcessSection />
-      <CooperationSection />
-      <FAQSection />
-      <ContactSection />
+      <SmoothSectionScroll>
+        <HeroSection />
+        <AboutSection />
+        <CollectionsSection />
+        <ProjectsSection />
+        <ProcessSection />
+        <CooperationSection />
+        <FAQSection />
+        <ContactSection />
 
-      <section className="footer" id="footer-section" data-snap-section="true">
-        <Footer />
-      </section>
+        <section className="footer" id="footer-section" data-snap-section="true">
+          <Footer />
+        </section>
+      </SmoothSectionScroll>
     </main>
   )
 }

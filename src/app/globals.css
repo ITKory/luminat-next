@@ -4,6 +4,18 @@
 @import "../fsd/shared/styles/legacy-utility.css";
 @import "../fsd/shared/styles/legacy-style.css";
 
+.smooth-scroll-frame {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.smooth-scroll-content {
+  min-height: 100vh;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
 .container-fluid {
   width: 100%;
 }

@@ -3,6 +3,7 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import '../fsd/shared/styles/fonts.css'
 import '../fsd/shared/styles/spacing.css'
+import '../fsd/shared/styles/theme-system.css'
 
 export const metadata: Metadata = {
   title: 'LUMINAT - Авторские светильники',
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#40423D',
+  themeColor: '#FFFEF7',
   width: 'device-width',
   initialScale: 1,
 }
@@ -24,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className="bg-[#FFFEF7] text-[#40423D]">
+      <body className="bg-bwhite text-green">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

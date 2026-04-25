@@ -147,8 +147,8 @@ export default function AboutPage() {
       <Header variant="dark" onCartClick={() => setIsCartOpen(true)} />
       <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
 
-      <section className="we-create mt-120">
-        <div className="container-32 df column-dir gap-40">
+      <section className="we-create mt-72 p-32">
+        <div className="df column-dir gap-40">
           <div className="heading h-gradient-bwhite df column-dir gap-16">
             <div className="col-12 df gap-16">
               <h2>МЫ СОЗДАЕМ СВЕТ, В КОТОРОМ</h2>
@@ -298,17 +298,18 @@ export default function AboutPage() {
               <h2 className="italic">КТО ЧУВСТВУЕТ</h2>
             </div>
             <div className="col-6 df column-dir text-bwhite gap-8">
-              <div className="caption">
+              <div className="w-96">
                 Мы открыты к совместной работе с архитекторами, дизайнерами, <br />
                 брендами и студиями.
               </div>
-              <div className="caption">Вместе мы можем создавать не просто объекты, а истории.</div>
+              <div className="w-50">Вместе мы можем создавать не <br />
+                просто объекты, а истории.</div>
             </div>
           </div>
           <div className="df gap-32 jcsb aie">
             <div className="col-6 df column-dir gap-24">
-              <input type="email" className="input-wrapper bg-green text-bwhite" placeholder="Email" />
-              <input type="text" className="input-wrapper bg-green text-bwhite" placeholder="Ваши идеи и предложения" />
+              <input type="email" className="input-wrapper bg-gray-400 text-bwhite" placeholder="Email" />
+              <input type="text" className="input-wrapper bg-gray-400 text-bwhite" placeholder="Ваши идеи и предложения" />
               <div className="btn-beige-sec">Написать нам</div>
             </div>
             <div className="col-3">

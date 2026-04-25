@@ -1,65 +1,160 @@
 "use client"
 
-import { useState } from "react"
-import { favoriteProductNames, getProductPreviews } from "@/entities/product/model/products"
+import Image from "next/image"
+import { useMemo, useState } from "react"
+import { formatPrice } from "@/shared/lib/format-price"
+import {
+  favoriteProductNames,
+  getProductPreviews,
+} from "@/entities/product/model/products"
 import { Header } from "@/widgets/layout/header"
 import { CartModal } from "@/widgets/cart/cart-modal"
 import { ProfileSidebar } from "@/widgets/profile/profile-sidebar"
+import { HeartOffIcon} from "lucide-react";
 
-const favoriteProducts = getProductPreviews(favoriteProductNames)
+const initialFavorites = getProductPreviews(favoriteProductNames)
 
-function formatPrice(price: number) {
-  return `${price.toLocaleString("ru-RU").replace(/\u00A0/g, " ")}₽`
+
+
+interface FavoriteCardProps {
+  name: string
+  price: number
+  image: string
+  onRemove: () => void
+  onAddToCart: () => void
 }
 
-function FavoriteCard({ name, price, image }: { name: string; price: number; image: string }) {
+function FavoriteCard({
+                        name,
+                        price,
+                        image,
+                        onRemove,
+                        onAddToCart,
+                      }: FavoriteCardProps) {
   return (
-    <div className="product-item df column-dir gap-12">
-      <div className="product-image-wrapper relative df jce">
-        <img src={image} alt="" className="responsive-img-3-4" />
-        <a href="#" className="like-btn absolute top-0 right-0 mt-12 mr-12">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path
-              d="M16 10.2589C13.3333 3.99967 4 4.66634 4 12.6664C4 20.6664 16 27.3333 16 27.3333C16 27.3333 28 20.6664 28 12.6664C28 4.66634 18.6667 3.99967 16 10.2589Z"
-              stroke="#FFFEF7"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+      <article className="flex min-w-0 flex-col gap-3   bg-bwhite p-4">
+        <div className="relative">
+          <div className="relative aspect-4/4 w-full overflow-hidden">
+            <Image
+                src={image}
+                alt={name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
-          </svg>
-        </a>
-      </div>
-      <div className="df jcsb">
-        <h6 className="text-green">{name}</h6>
-        <h6 className="text-green text-end">{formatPrice(price)}</h6>
-      </div>
-      <div className="to-cart text-end">
-        <a href="#" className="btn-link-green-sec">В корзину→</a>
-      </div>
-    </div>
+          </div>
+          <button
+              type="button"
+              onClick={onRemove}
+              className="absolute right-3 top-3 inline-flex h-10 w-10 items-center justify-center transition-colors hover:bg-bwhite"
+              aria-label={`Убрать ${name} из избранного`}
+          >
+            <HeartOffIcon color="red"  />
+          </button>
+        </div>
+
+        <div className="flex items-start justify-between gap-4">
+          <h6 className="font-medium text-green">{name}</h6>
+          <span className="shrink-0 text-end font-medium text-green">
+          {formatPrice(price)}
+        </span>
+        </div>
+
+        <button
+            type="button"
+            onClick={onAddToCart}
+            className="w-fit self-end text-sm text-green transition hover:opacity-70"
+        >
+          В корзину →
+        </button>
+      </article>
   )
+}
+
+function getPluralForm(count: number): string {
+  const lastDigit = count % 10
+  const lastTwoDigits = count % 100
+
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 19) {
+    return "позиций"
+  }
+  if (lastDigit === 1) {
+    return "позиция"
+  }
+  if (lastDigit >= 2 && lastDigit <= 4) {
+    return "позиции"
+  }
+  return "позиций"
 }
 
 export default function FavoritesPage() {
   const [isCartOpen, setIsCartOpen] = useState(false)
+  const [items, setItems] = useState(initialFavorites)
+
+  const hasItems = items.length > 0
+  const totalItemsLabel = useMemo(
+      () => `${items.length} ${getPluralForm(items.length)}`,
+      [items.length]
+  )
 
   return (
-    <main className="bg-bwhite">
-      <Header onCartClick={() => setIsCartOpen(true)} />
-      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <main className="min-h-screen bg-bwhite">
+        <Header onCartClick={() => setIsCartOpen(true)} />
+        <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
 
-      <section className="fav">
-        <div className="container-32 df mt-120 gap-32">
-          <ProfileSidebar title="Избранное" />
-          <div className="catalog">
-            <div className="products-grid soft-modern">
-              {favoriteProducts.map((favorite) => (
-                <FavoriteCard key={favorite.name} {...favorite} />
-              ))}
+        <section className="pb-16">
+          <div className="container-32 mt-120 grid items-start gap-8 lg:grid-cols-[18rem_minmax(0,1fr)]">
+            <ProfileSidebar title="Избранное" />
+
+            <div className="min-w-0 lg:pt-2">
+              {/* Header section */}
+              <div className="mb-8 flex flex-col gap-4 border-b border-[rgba(81,88,98,0.14)] pb-6 md:flex-row md:items-end md:justify-between">
+                <div className="space-y-2">
+                  <p className="text-sm text-gray md:text-base">
+                    {hasItems ? totalItemsLabel : "Список пока пуст"}
+                  </p>
+                </div>
+                {hasItems && (
+                    <button
+                        type="button"
+                        onClick={() => setItems([])}
+                        className="w-fit text-sm text-green transition hover:opacity-70"
+                    >
+                      Очистить избранное
+                    </button>
+                )}
+              </div>
+
+              {/* Favorites grid */}
+              {hasItems ? (
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8 xl:grid-cols-3">
+                    {items.map((favorite) => (
+                        <FavoriteCard
+                            key={favorite.name}
+                            {...favorite}
+                            onAddToCart={() => setIsCartOpen(true)}
+                            onRemove={() =>
+                                setItems((current) =>
+                                    current.filter((item) => item.name !== favorite.name)
+                                )
+                            }
+                        />
+                    ))}
+                  </div>
+              ) : (
+                  <div className="border border-dashed border-[rgba(81,88,98,0.2)] px-6 py-10 text-center">
+                    <h6 className="font-medium text-green">
+                      В избранном пока ничего нет
+                    </h6>
+                    <p className="mt-3 text-sm text-gray">
+                      Добавьте понравившиеся модели из каталога, чтобы вернуться к
+                      ним позже.
+                    </p>
+                  </div>
+              )}
             </div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
   )
 }
