@@ -8,12 +8,36 @@ import {
     getOrderStatusClass,
     orders,
     sortOptions,
+    type OrderItem,
     type OrderStatus,
 } from "@/entities/order/model/orders"
 import { formatPrice } from "@/shared/lib/format-price"
 import { Header } from "@/widgets/layout/header"
 import { CartModal } from "@/widgets/cart/cart-modal"
 import { ProfileSidebar } from "@/widgets/profile/profile-sidebar"
+
+function OrderItemsPreview({ items }: { items: OrderItem[] }) {
+    const previewItems = items.slice(0, 4)
+
+    return (
+        <div className="grid w-[7.75rem] shrink-0 grid-cols-2 gap-1 sm:w-[8.5rem]">
+            {previewItems.map((item) => (
+                <div
+                    key={item.id}
+                    className="relative aspect-square overflow-hidden bg-[rgba(81,88,98,0.06)]"
+                >
+                    <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 3.875rem, 4.25rem"
+                    />
+                </div>
+            ))}
+        </div>
+    )
+}
 
 export default function OrdersPage() {
     const [isCartOpen, setIsCartOpen] = useState(false)
@@ -82,37 +106,30 @@ export default function OrdersPage() {
                                 {visibleOrders.map((order) => (
                                     <article
                                         key={order.id}
-                                        className="flex flex-col gap-5  bg-bwhite p-4 lg:flex-row lg:items-center lg:justify-between"
+                                        className="grid gap-5  md:grid-cols-[8.5rem_minmax(0,1fr)_auto] md:items-center md:gap-6"
                                     >
-                                        <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-                                            <div className="relative aspect-square w-full shrink-0 overflow-hidden sm:w-32">
-                                                <Image
-                                                    src={order.items[0]?.image ?? "/images/products/product-1.webp"}
-                                                    alt=""
-                                                    fill
-                                                    className="object-cover"
-                                                    sizes="(max-width: 640px) 100vw, 128px"
-                                                />
-                                            </div>
-
-                                            <div className="flex flex-1 flex-col gap-4">
-                                                <h6 className="font-medium text-green">Заказ №{order.id}</h6>
-
-                                                <div>
-                                                    <p className={getOrderStatusClass(order.label, order.className)}>{order.label}</p>
-                                                    <p className="text-sm text-gray">{order.date}</p>
-                                                </div>
-
-                                                <p className="font-medium text-green">
-                                                    Сумма: {formatPrice(order.total)}
+                                        <OrderItemsPreview items={order.items} />
+                                        <div className="min-w-0 space-y-6">
+                                            <h6 className="font-medium  text-green md:text-[2rem] md:leading-none md:tracking-[-0.04em]">
+                                                Заказ №{order.id}
+                                            </h6>
+                                            <div/>
+                                            <div className="space-y-3">
+                                                <p className={getOrderStatusClass(order.label, order.className)}>
+                                                    {order.label}
                                                 </p>
+                                                <p className="text-sm text-gray">{order.date}</p>
                                             </div>
+
+                                            <p className="text-xl text-green md:text-[2rem] md:leading-none md:tracking-[-0.04em]">
+                                                Сумма: {formatPrice(order.total)}
+                                            </p>
                                         </div>
 
-                                        <div className="flex justify-start lg:justify-end border border-[rgba(81,88,98,0.2)]">
+                                        <div className="flex justify-start md:justify-end">
                                             <Link
                                                 href={`/profile/orders/${order.id}`}
-                                                className="inline-flex min-h-12 items-center justify-center  px-5 text-green transition hover:border-green hover:bg-green/5"
+                                                className="inline-flex min-h-12 items-center justify-center border border-[rgba(81,88,98,0.2)] px-6 text-green transition hover:border-green hover:bg-green/5"
                                             >
                                                 Подробнее
                                             </Link>

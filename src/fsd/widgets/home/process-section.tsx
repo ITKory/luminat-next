@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 const steps = [
     {
         number: "#01",
@@ -17,7 +19,7 @@ const steps = [
     },
     {
         number: "#02",
-        image: "/images/art-2.jpeg",
+        image: "/images/art-2.webp",
         title: <>Формулируем образ света — как он должен «звучать»</>,
         description: (
             <>
@@ -71,12 +73,14 @@ export function ProcessSection() {
                     <div className="col-6 df">
                         {steps.slice(0, 2).map((step) => (
                             <div key={step.number} className={step.className}>
-                                {step.number === "#02" && (
+                                {step.number === "#02" && step.image && (
                                     <>
-                                        <img
+                                        <Image
                                             src={step.image}
                                             alt=""
-                                            className="absolute inset-0 w-full h-full object-cover"
+                                            fill
+                                            sizes="(max-width: 1024px) 100vw, 50vw"
+                                            className="object-cover"
                                         />
                                         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-black/45 to-transparent pointer-events-none" />
                                     </>

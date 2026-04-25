@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { collections } from "@/entities/collection/model/collections"
 
@@ -5,6 +6,12 @@ const aspectRatioClassNames = {
   "1:1": "responsive-img-1-1",
   "3:4": "responsive-img-3-4",
   "4:3": "responsive-img-4-3",
+} as const
+
+const aspectRatioDimensions = {
+  "1:1": { width: 960, height: 960 },
+  "3:4": { width: 900, height: 1200 },
+  "4:3": { width: 1200, height: 900 },
 } as const
 
 const [
@@ -16,10 +23,22 @@ const [
   artCollection,
 ] = collections
 
-function CollectionCard({ image, aspectClass }: { image: string; aspectClass: string }) {
+function CollectionCard({
+  image,
+  aspectClass,
+  sizes,
+  width,
+  height,
+}: {
+  image: string
+  aspectClass: string
+  sizes: string
+  width: number
+  height: number
+}) {
   return (
     <div className="collection-card">
-      <img src={image} alt="" className={aspectClass} />
+      <Image src={image} alt="" width={width} height={height} sizes={sizes} className={aspectClass} />
       <Link href="/catalog" className="btn-link-bwhite-sec">
         <p>К коллекции→</p>
       </Link>
@@ -38,11 +57,23 @@ export function CollectionsSection() {
         <div className="collections df gap-32">
           <div className="col-6 df gap-32">
             <div className="w-100 df column-dir gap-16">
-              <CollectionCard image={pendantCollection.image} aspectClass={aspectRatioClassNames[pendantCollection.aspectRatio]} />
+              <CollectionCard
+                image={pendantCollection.image}
+                aspectClass={aspectRatioClassNames[pendantCollection.aspectRatio]}
+                sizes="(max-width: 1024px) 100vw, 25vw"
+                width={aspectRatioDimensions[pendantCollection.aspectRatio].width}
+                height={aspectRatioDimensions[pendantCollection.aspectRatio].height}
+              />
               <p className="text-green">Подвесные светильники</p>
             </div>
             <div className="w-100 df column-dir gap-16">
-              <CollectionCard image={wallCollection.image} aspectClass={aspectRatioClassNames[wallCollection.aspectRatio]} />
+              <CollectionCard
+                image={wallCollection.image}
+                aspectClass={aspectRatioClassNames[wallCollection.aspectRatio]}
+                sizes="(max-width: 1024px) 100vw, 25vw"
+                width={aspectRatioDimensions[wallCollection.aspectRatio].width}
+                height={aspectRatioDimensions[wallCollection.aspectRatio].height}
+              />
               <p className="text-green">Настенные светильники</p>
             </div>
             <div className="w-100 df column-dir gap-16 text-greyge">
@@ -52,21 +83,45 @@ export function CollectionsSection() {
             </div>
           </div>
           <div className="col-2 df column-dir gap-16">
-            <CollectionCard image={floorCollection.image} aspectClass={aspectRatioClassNames[floorCollection.aspectRatio]} />
+            <CollectionCard
+              image={floorCollection.image}
+              aspectClass={aspectRatioClassNames[floorCollection.aspectRatio]}
+              sizes="(max-width: 1024px) 100vw, 16vw"
+              width={aspectRatioDimensions[floorCollection.aspectRatio].width}
+              height={aspectRatioDimensions[floorCollection.aspectRatio].height}
+            />
             <p className="text-green">Напольные светильники</p>
           </div>
           <div className="col-4 df column-dir gap-16 pr-64">
-            <CollectionCard image={trackCollection.image} aspectClass={aspectRatioClassNames[trackCollection.aspectRatio]} />
+            <CollectionCard
+              image={trackCollection.image}
+              aspectClass={aspectRatioClassNames[trackCollection.aspectRatio]}
+              sizes="(max-width: 1024px) 100vw, 33vw"
+              width={aspectRatioDimensions[trackCollection.aspectRatio].width}
+              height={aspectRatioDimensions[trackCollection.aspectRatio].height}
+            />
             <p className="text-green">Споты и треки светильники</p>
           </div>
         </div>
         <div className="collections df gap-32">
           <div className="col-4 offset-2 df column-dir gap-16">
-            <CollectionCard image={outdoorCollection.image} aspectClass={aspectRatioClassNames[outdoorCollection.aspectRatio]} />
+            <CollectionCard
+              image={outdoorCollection.image}
+              aspectClass={aspectRatioClassNames[outdoorCollection.aspectRatio]}
+              sizes="(max-width: 1024px) 100vw, 33vw"
+              width={aspectRatioDimensions[outdoorCollection.aspectRatio].width}
+              height={aspectRatioDimensions[outdoorCollection.aspectRatio].height}
+            />
             <p className="text-green">Уличное освещение</p>
           </div>
           <div className="col-2 df column-dir gap-16">
-            <CollectionCard image={artCollection.image} aspectClass={aspectRatioClassNames[artCollection.aspectRatio]} />
+            <CollectionCard
+              image={artCollection.image}
+              aspectClass={aspectRatioClassNames[artCollection.aspectRatio]}
+              sizes="(max-width: 1024px) 100vw, 16vw"
+              width={aspectRatioDimensions[artCollection.aspectRatio].width}
+              height={aspectRatioDimensions[artCollection.aspectRatio].height}
+            />
             <p className="text-green">Авторские инсталяции</p>
           </div>
           <div className="col-2 df column-dir gap-16 text-greyge">

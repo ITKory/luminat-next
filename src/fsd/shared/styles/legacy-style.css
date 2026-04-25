@@ -127,7 +127,7 @@ section.about .star {
   position: relative;
 }
 
-.project-item img {
+.project-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -136,11 +136,11 @@ section.about .star {
   will-change: transform;
 }
 
-.projects-interactive .project-item.active img {
+.projects-interactive .project-item.active .project-image {
   transform: translate3d(var(--project-image-offset-x), var(--project-image-offset-y), 0) scale(1);
 }
 
-.projects-interactive .project-item.active .project-image-wrapper:hover img {
+.projects-interactive .project-item.active .project-image-wrapper:hover .project-image {
   transform: translate3d(var(--project-image-offset-x), var(--project-image-offset-y), 0) scale(1.05);
 }
 
@@ -176,22 +176,6 @@ section.about .star {
   padding-bottom: 40px;
 }
 
-.fade-in {
-  animation: fadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .projects-static {
   height: auto;
 }
@@ -217,10 +201,10 @@ section.about .star {
 
 .projects-static .project-image-wrapper {
   height: auto;
+  aspect-ratio: 4 / 3;
 }
 
-.projects-static .project-item img {
-  aspect-ratio: 4 / 3;
+.projects-static .project-image {
   transform: none;
 }
 

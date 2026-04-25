@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { type PointerEvent, useRef } from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { projects } from "@/entities/project/model/projects"
@@ -95,10 +96,14 @@ function ProjectImage({
         onPointerMove={updatePointerOffset}
         onPointerLeave={resetPointerOffset}
     >
-      <img
+      <Image
           src={src}
           alt={alt}
-          loading={loading}
+          fill
+          priority={loading === "eager"}
+          loading={loading === "lazy" ? "lazy" : undefined}
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="project-image"
       />
     </div>
   )

@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useState } from "react"
 import {
   filterOptions,
@@ -20,8 +21,14 @@ function formatPrice(price: number) {
 function ProductCard({ name, price, image }: { name: string; price: number; image: string }) {
   return (
     <div className="product-item df column-dir gap-12">
-      <div className="product-image-wrapper relative df jce">
-        <img src={image} alt="" className="responsive-img-3-4" />
+      <div className="product-image-wrapper relative df jce aspect-[3/4] overflow-hidden">
+        <Image
+          src={image}
+          alt=""
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          className="object-cover"
+        />
         <a href="#" className="like-btn absolute top-0 right-0 mt-12 mr-12">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
             <path
