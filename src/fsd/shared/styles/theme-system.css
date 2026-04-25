@@ -1,7 +1,7 @@
 :root {
-  --font-sans: "Helvetica Neue Luminat", "Helvetica Neue", Arial, sans-serif;
-  --font-heading: "Futura PT", "Helvetica Neue Luminat", "Helvetica Neue", Arial, sans-serif;
-  --font-heading-italic: "Futura PT Light Italic", "Futura PT", "Helvetica Neue Luminat", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Helvetica Neue Luminat", "Helvetica Neue";
+  --font-heading: "Helvetica Neue Luminat", "Helvetica Neue";
+  --font-heading-italic: "Helvetica Neue Luminat", "Helvetica Neue";
   --color-surf: #515862;
   --color-dark-surf: #2b2f35;
   --color-glossy-grey: #d0d0d0;
@@ -70,8 +70,8 @@ h4 i,
 h5 i,
 h6 i {
   font-family: var(--font-heading-italic);
-  font-weight: 400 !important;
-  font-style: normal !important;
+  font-weight: 300 !important;
+  font-style: italic !important;
 }
 
 main {
@@ -80,6 +80,10 @@ main {
 
 .bg-green {
   background-color: var(--color-surf) !important;
+}
+
+.bg-dark-surf {
+  background-color: var(--color-dark-surf) !important;
 }
 
 .bg-bwhite,
@@ -322,6 +326,10 @@ body[data-projects-active="true"] .site-header {
   opacity: 0.24;
 }
 
+.site-footer--dark {
+  background-color: var(--color-dark-surf);
+}
+
 footer .input-wrapper {
   border-bottom-color: currentColor;
 }
@@ -466,9 +474,21 @@ section.catalog .form-check-input {
 }
 
 .partners-panel {
+  padding: 0;
+}
+
+.partners-panel-block {
+  padding: 4rem 0;
+}
+
+.partners-panel-block--light {
+  background: var(--color-bwhite);
+  color: var(--color-green);
+}
+
+.partners-panel-block--dark {
   background: var(--color-dark-surf);
   color: var(--color-bwhite);
-  padding: 4rem 0;
 }
 
 .partners-detail-grid,
@@ -480,7 +500,7 @@ section.catalog .form-check-input {
 }
 
 .partners-detail-grid {
-  margin-bottom: 4rem;
+  margin-bottom: 0;
 }
 
 .partners-format-list {
@@ -503,11 +523,19 @@ section.catalog .form-check-input {
 .partners-format-list li::before {
   content: "#" counter(partners-format-item, decimal-leading-zero);
   margin-top: 0.05rem;
-  color: var(--color-bwhite);
 }
 
-.partners-panel-note,
-.partners-subscribe-copy p {
+.partners-panel-block--light .partners-format-list li::before {
+  color: var(--color-green);
+}
+
+.partners-panel-block--light .partners-panel-note,
+.partners-panel-block--light .partners-subscribe-copy p {
+  color: rgba(81, 88, 98, 0.74);
+}
+
+.partners-panel-block--dark .partners-panel-note,
+.partners-panel-block--dark .partners-subscribe-copy p {
   color: rgba(255, 254, 247, 0.74);
 }
 
@@ -517,7 +545,7 @@ section.catalog .form-check-input {
   max-width: 27rem;
 }
 
-.partners-form input {
+.partners-panel-block--dark .partners-form input {
   height: 3.5rem;
   padding: 0 1rem;
   border: 1px solid rgba(255, 254, 247, 0.22);
@@ -525,11 +553,11 @@ section.catalog .form-check-input {
   color: var(--color-bwhite);
 }
 
-.partners-form input::placeholder {
+.partners-panel-block--dark .partners-form input::placeholder {
   color: rgba(255, 254, 247, 0.52);
 }
 
-.partners-form button {
+.partners-panel-block--dark .partners-form button {
   height: 3.5rem;
   border: none;
   background: var(--color-calm-grey);
@@ -538,8 +566,21 @@ section.catalog .form-check-input {
   transition: background-color 0.25s ease;
 }
 
-.partners-form button:hover {
+.partners-panel-block--dark .partners-form button:hover {
   background: var(--color-surf);
+}
+
+section.contact .map {
+  height: auto;
+  max-height: 25rem;
+  overflow: hidden;
+}
+
+section.contact .contact-map-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 25rem;
 }
 
 @media (max-width: 1200px) {
@@ -760,8 +801,9 @@ section.catalog .form-check-input {
     padding-top: 1rem;
   }
 
-  section.contact .map {
-    min-height: 18rem;
+  section.contact .map,
+  section.contact .contact-map-image {
+    max-height: 18rem;
   }
 
   .site-footer__social {
@@ -830,7 +872,7 @@ section.catalog .form-check-input {
     gap: 2rem;
   }
 
-  .partners-panel {
+  .partners-panel-block {
     padding: 3rem 0;
   }
 }

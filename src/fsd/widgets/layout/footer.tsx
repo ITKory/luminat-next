@@ -9,7 +9,7 @@ interface FooterProps {
 export function Footer({ variant = "dark" }: Readonly<FooterProps>) {
   const isDark = variant === "dark"
   const textClass = isDark ? "text-bwhite" : "text-green"
-  const bgClass = isDark ? "bg-green" : "bg-bwhite"
+  const bgClass = isDark ? "bg-dark-surf" : "bg-bwhite"
   const arrowSrc = isDark ? "/images/Arrow/Arrow_Up_Right_SM.svg" : "/images/Arrow_Up_Right_SM_green.svg"
   const logoSrc = isDark ? "/images/logo-light.svg" : "/images/logo-dark.svg"
   const navLinkClass = isDark ? "btn-link-bwhite-sec" : "btn-link-green-sec"
@@ -33,7 +33,7 @@ export function Footer({ variant = "dark" }: Readonly<FooterProps>) {
                   required
                   className={cn(
                       "input-wrapper w-full pr-14",
-                      isDark ? "bg-green text-bwhite" : "border-bottom bg-bwhite text-green"
+                      isDark ? "bg-dark-surf text-bwhite" : "border-bottom bg-bwhite text-green"
                   )}
                   placeholder=""
               />
@@ -72,17 +72,17 @@ export function Footer({ variant = "dark" }: Readonly<FooterProps>) {
         <div className="site-footer__main df gap-32">
           <div className="site-footer__contacts col-6 df column-dir gap-24">
             <div className="df column-dir gap-8">
-              <div className="caption text-gray">E-mail</div>
+              <div className={cn(textClass, 'opacity-60')}>E-mail</div>
               <p className={textClass}>info@luminat.com</p>
             </div>
             <div className="df column-dir gap-8">
-              <div className="caption text-gray">Адрес</div>
+              <div className={cn(textClass, 'opacity-60')}>Адрес</div>
               <p className={textClass}>
                 60300 Большая Покровская улица, 3, <br /> Нижний Новгород
               </p>
             </div>
             <div className="df column-dir w-100 gap-8">
-              <div className="caption text-gray">Телефон</div>
+              <div className={cn(textClass, 'opacity-60')}>Телефон</div>
               <p className={textClass}>+7 987 654 32 10</p>
             </div>
           </div>

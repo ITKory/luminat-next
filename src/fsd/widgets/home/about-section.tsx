@@ -18,7 +18,7 @@ export function AboutSection() {
           </div>
         </div>
         <div className="col-6 h-gradient df column-dir jcsb">
-          <div className="df column-dir">
+          <div className="df column-dir pb-32">
             <h4>Это не просто светильники.</h4>
             <h4 className="italic">Это форма мысли,</h4>
             <h4>отражённая в свете.</h4>

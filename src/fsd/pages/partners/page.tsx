@@ -64,49 +64,53 @@ export default function PartnersPage() {
       </section>
 
       <section className="partners-panel" data-snap-section="true">
-        <div className="container-32 partners-detail-grid">
-          <div>
-            <div className="heading h-gradient-bwhite df gap-16">
-              <h2>ФОРМАТЫ</h2>
-              <h2 className="italic">ПАРТНЕРСТВА</h2>
+        <div className="partners-panel-block partners-panel-block--light">
+          <div className="container-32 partners-detail-grid">
+            <div>
+              <div className="heading h-gradient df gap-16">
+                <h2>ФОРМАТЫ</h2>
+                <h2 className="italic">ПАРТНЕРСТВА</h2>
+              </div>
+
+              <ul className="partners-format-list">
+                {partnershipFormats.map((format) => (
+                  <li key={format}>{format}</li>
+                ))}
+              </ul>
             </div>
 
-            <ul className="partners-format-list">
-              {partnershipFormats.map((format) => (
-                <li key={format}>{format}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="partners-subscribe-copy">
-          <p className=" gap-9 ">
-            Мы понимаем, как важно, чтобы свет дополнял пространство, а не спорил с ним. Помогаем подобрать
-            объекты и их комбинации для создания цельной визуальной композиции в вашем проекте.
-          </p>
+            <div className="partners-subscribe-copy">
+              <p className="gap-9">
+                Мы понимаем, как важно, чтобы свет дополнял пространство, а не спорил с ним. Помогаем подобрать
+                объекты и их комбинации для создания цельной визуальной композиции в вашем проекте.
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="container-32 partners-subscribe-grid">
-          <div className="partners-subscribe-copy">
-            <div className="heading h-gradient-bwhite df column-dir gap-8">
-              <h2>НАМ ПО ПУТИ С ТЕМИ,</h2>
-              <h2 className="italic">КТО ЧУВСТВУЕТ</h2>
+        <div className="partners-panel-block partners-panel-block--dark">
+          <div className="container-32 partners-subscribe-grid">
+            <div className="partners-subscribe-copy">
+              <div className="heading h-gradient-bwhite df column-dir gap-8">
+                <h2>НАМ ПО ПУТИ С ТЕМИ,</h2>
+                <h2 className="italic">КТО ЧУВСТВУЕТ</h2>
+              </div>
+              <form className="partners-form pt-16">
+                <input type="email" name="email" placeholder="Email" aria-label="Email" />
+                <button type="submit">Оформить подписку</button>
+              </form>
             </div>
-            <form className="partners-form pt-16">
-              <input type="email" name="email" placeholder="Email" aria-label="Email" />
-              <button type="submit">Оформить подписку</button>
-            </form>
-          </div>
-<div className="partners-subscribe-copy">
-  <p className="justify-start w-95">
-    Мы открыты к совместной работе с архитекторами, дизайнерами, брендами и студиями.
-  </p>
-  <p className="justify-start w-95">
-    Вместе можно
-    создавать не просто объекты, а истории.
-  </p>
-</div>
 
+            <div className="partners-subscribe-copy">
+              <p className="justify-start w-95">
+                Мы открыты к совместной работе с архитекторами, дизайнерами, брендами и студиями.
+              </p>
+              <p className="justify-start w-95">
+                Вместе можно
+                создавать не просто объекты, а истории.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

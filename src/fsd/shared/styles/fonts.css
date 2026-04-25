@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Helvetica Neue Luminat";
-  src: url("/fonts/new/HelveticaNeueLight%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  src: url("/public/fonts/new/HelveticaNeueLight.otf") format("opentype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: "Helvetica Neue Luminat";
-  src: url("/fonts/new/HelveticaNeueLightItalic%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  src: url("/public/fonts/new/HelveticaNeueLightItalic.otf") format("opentype");
   font-weight: 300;
   font-style: italic;
   font-display: swap;
@@ -16,7 +16,7 @@
 
 @font-face {
   font-family: "Helvetica Neue Luminat";
-  src: url("/fonts/new/HelveticaNeueRoman%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  src: url("/public/fonts/new/HelveticaNeueRoman.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -24,7 +24,7 @@
 
 @font-face {
   font-family: "Helvetica Neue Luminat";
-  src: url("/fonts/new/HelveticaNeueItalic%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.ttf") format("truetype");
+  src: url("/public/fonts/new/HelveticaNeueItalic.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -32,7 +32,7 @@
 
 @font-face {
   font-family: "Helvetica Neue Luminat";
-  src: url("/fonts/new/HelveticaNeueMedium%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  src: url("/public/fonts/new/HelveticaNeueMedium.otf") format("opentype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -40,7 +40,7 @@
 
 @font-face {
   font-family: "Helvetica Neue Luminat";
-  src: url("/fonts/new/HelveticaNeueMediumItalic%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  src: url("/public/fonts/new/HelveticaNeueMediumItalic.otf") format("opentype");
   font-weight: 500;
   font-style: italic;
   font-display: swap;
@@ -48,7 +48,7 @@
 
 @font-face {
   font-family: "Helvetica Neue Luminat";
-  src: url("/fonts/new/HelveticaNeueBold%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  src: url("/public/fonts/new/HelveticaNeueBold.otf") format("opentype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -56,7 +56,7 @@
 
 @font-face {
   font-family: "Helvetica Neue Luminat";
-  src: url("/fonts/new/HelveticaNeueBoldItalic%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  src: url("/public/fonts/new/HelveticaNeueBoldItalic.otf") format("opentype");
   font-weight: 700;
   font-style: italic;
   font-display: swap;
@@ -64,7 +64,7 @@
 
 @font-face {
   font-family: "Helvetica Neue Luminat";
-  src: url("/fonts/new/HelveticaNeueBlack%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  src: url("/public/fonts/new/HelveticaNeueBlack.otf") format("opentype");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -72,48 +72,8 @@
 
 @font-face {
   font-family: "Helvetica Neue Luminat";
-  src: url("/fonts/new/HelveticaNeueBlackItalic%C2%A0%E2%80%94%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.otf") format("opentype");
+  src: url("/public/fonts/new/HelveticaNeueBlackItalic.otf") format("opentype");
   font-weight: 900;
   font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Futura PT";
-  src: url("/fonts/FuturaPT-Book.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Futura PT";
-  src: url("/fonts/FuturaPT-BookObl.ttf") format("truetype");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Futura PT";
-  src: url("/fonts/FuturaPT-Light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Futura PT";
-  src: url("/fonts/FuturaPT-LightObl.ttf") format("truetype");
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Futura PT Light Italic";
-  src: url("/fonts/FuturaPT-LightObl.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
   font-display: swap;
 }

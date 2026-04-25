@@ -41,8 +41,14 @@ export function ContactSection() {
               <p className="text-green">+7 987 654 32 10</p>
             </div>
           </div>
-          <div id="map" className="w-100 map" >
-            <Image src="/images/map.png" alt="LUMINAT" width={1600} height={220} className="w-100" />
+          <div id="map" className="w-100 map">
+            <Image
+              src="/images/map.png"
+              alt="LUMINAT"
+              width={1600}
+              height={220}
+              className="w-100 contact-map-image"
+            />
           </div>
         </div>
       </div>
