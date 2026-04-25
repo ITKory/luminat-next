@@ -78,10 +78,6 @@ main {
   background: var(--color-bwhite);
 }
 
-.bg-green {
-  background-color: var(--color-surf) !important;
-}
-
 .bg-dark-surf {
   background-color: var(--color-dark-surf) !important;
 }

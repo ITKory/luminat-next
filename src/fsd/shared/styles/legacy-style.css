@@ -769,7 +769,7 @@ section.connection .input-wrapper {
 
 /* Стили для хеддера на странице about.html */
 .about-page header {
-  background-color: var(--color-green) !important;
+  background-color: var(--color-dark-surf) !important;
   border-bottom-color: var(--color-bwhite) !important;
 }
 
