@@ -275,7 +275,7 @@ export default function AboutPage() {
           </div>
           <div className="df column-dir gap-32">
             {facts.map((fact) => (
-              <div key={fact.number} className="df border-bottom pb-24 gap-32">
+              <div key={fact.number} className="df border-b border-gray pb-24 gap-32">
                 <div className="col-3">
                   <h3 className="text-bwhite">{fact.number}</h3>
                 </div>

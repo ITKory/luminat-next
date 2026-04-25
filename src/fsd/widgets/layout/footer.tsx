@@ -20,26 +20,32 @@ export function Footer({ variant = "dark" }: Readonly<FooterProps>) {
       <div className="site-footer__inner df column-dir py-64 container-32 gap-48 relative">
         <div className="site-footer__signup col-4 df column-dir gap-24">
           <h6 className={textClass}>Подписаться</h6>
-          <form className="df column-dir email-subscription">
-            <div className={cn("df", textClass)}>
-              <label htmlFor="footer-email" className="caption">
-                Введите ваш E-mail
-              </label>
-              <button type="submit" className="arrow-button" aria-label="Отправить email">
-                <Image src={arrowSrc} alt="" className="arrow" width={24} height={24} />
+          <form className="email-subscription flex flex-col gap-3">
+            <label htmlFor="footer-email" className={cn("caption", textClass)}>
+              Введите ваш E-mail
+            </label>
+
+            <div className="relative">
+              <input
+                  id="footer-email"
+                  type="email"
+                  name="email"
+                  required
+                  className={cn(
+                      "input-wrapper w-full pr-14",
+                      isDark ? "bg-green text-bwhite" : "border-bottom bg-bwhite text-green"
+                  )}
+                  placeholder=""
+              />
+
+              <button
+                  type="submit"
+                  aria-label="Отправить email"
+                  className="absolute right-3 -top-1/2 -translate-y-1/2"
+              >
+                <Image src={arrowSrc} alt="" width={38} height={38} />
               </button>
             </div>
-            <input
-              id="footer-email"
-              type="email"
-              name="email"
-              required
-              className={cn(
-                "input-wrapper",
-                isDark ? "bg-green text-bwhite" : "bg-bwhite text-green border-bottom"
-              )}
-              placeholder=""
-            />
           </form>
         </div>
 
@@ -49,14 +55,14 @@ export function Footer({ variant = "dark" }: Readonly<FooterProps>) {
           </div>
         </div>
 
-        <div className={cn("site-footer__tagline df gap-32 w-100", textClass)}>
+        <div className={cn("site-footer__tagline df gap-32", textClass)}>
           <div className="col-6">
             <h6>STUDIO</h6>
           </div>
-          <div className="justify-content-center">
+          <div >
             <h6>OF</h6>
           </div>
-          <div className="w-100 d-flex justify-content-end">
+          <div className="w-50 d-flex justify-content-end">
             <h6 className="text-end">LIGHT</h6>
           </div>
         </div>
@@ -81,7 +87,7 @@ export function Footer({ variant = "dark" }: Readonly<FooterProps>) {
             </div>
           </div>
 
-          <div className="site-footer__nav justify-content-end df column-dir">
+          <div className="site-footer__nav w-50 df column-dir ">
             <Link href="/" className={navLinkClass}>Главная</Link>
             <Link href="/catalog" className={navLinkClass}>Каталог</Link>
             <Link href="/about" className={navLinkClass}>О студии</Link>
@@ -90,7 +96,7 @@ export function Footer({ variant = "dark" }: Readonly<FooterProps>) {
             <Link href="/terms" className={navLinkClass}>Обработка персональных данных</Link>
           </div>
 
-          <div className="site-footer__social w-100 df column-dir gap-12 jce aie">
+          <div className="site-footer__social  df column-dir gap-12 jce aie">
             <a href=""><Image src={`/images/Pinterest Fill${socialSuffix}.svg`} alt="Pinterest" width={32} height={32} /></a>
             <a href=""><Image src={`/images/Tiktok Fill${socialSuffix}.svg`} alt="TikTok" width={32} height={32} /></a>
             <a href=""><Image src={`/images/Telegram Fill${socialSuffix}.svg`} alt="Telegram" width={32} height={32} /></a>

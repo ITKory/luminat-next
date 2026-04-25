@@ -1,6 +1,7 @@
 "use client"
 
-import { useRef } from "react"
+import { type PointerEvent, useRef } from "react"
+import { motion, useReducedMotion } from "motion/react"
 import { projects } from "@/entities/project/model/projects"
 import { cn } from "@/shared/lib/cn"
 import { useProjectsScrollController } from "@/widgets/home/use-projects-scroll-controller"
@@ -58,12 +59,57 @@ function renderProjectDetails(project: (typeof projects)[number]) {
   )
 }
 
+function ProjectImage({
+  src,
+  alt,
+  loading,
+  enableHoverMotion,
+}: {
+  src: string
+  alt: string
+  loading: "eager" | "lazy"
+  enableHoverMotion: boolean
+}) {
+  const updatePointerOffset = (event: PointerEvent<HTMLDivElement>) => {
+    if (!enableHoverMotion) {
+      return
+    }
+
+    const { currentTarget, clientX, clientY } = event
+    const rect = currentTarget.getBoundingClientRect()
+    const offsetX = ((clientX - rect.left) / rect.width - 0.5) * 18
+    const offsetY = ((clientY - rect.top) / rect.height - 0.5) * 18
+
+    currentTarget.style.setProperty("--project-image-offset-x", `${offsetX.toFixed(2)}px`)
+    currentTarget.style.setProperty("--project-image-offset-y", `${offsetY.toFixed(2)}px`)
+  }
+
+  const resetPointerOffset = (event: PointerEvent<HTMLDivElement>) => {
+    event.currentTarget.style.setProperty("--project-image-offset-x", "0px")
+    event.currentTarget.style.setProperty("--project-image-offset-y", "0px")
+  }
+
+  return (
+    <div
+        className="project-image-wrapper"
+        onPointerMove={updatePointerOffset}
+        onPointerLeave={resetPointerOffset}
+    >
+      <img
+          src={src}
+          alt={alt}
+          loading={loading}
+      />
+    </div>
+  )
+}
+
 export function ProjectsSection() {
   const sectionRef = useRef<HTMLElement | null>(null)
+  const shouldReduceMotion = !!useReducedMotion()
 
   const {
     activeProject,
-    isAnimating,
     isInteractive,
   } = useProjectsScrollController(sectionRef)
 
@@ -71,6 +117,7 @@ export function ProjectsSection() {
       activeProject >= 0 && activeProject < projects.length ? activeProject : 0
 
   const project = projects[safeActiveProject]
+  const enableHoverMotion = isInteractive && !shouldReduceMotion
 
   return (
       <section
@@ -92,13 +139,12 @@ export function ProjectsSection() {
                         isInteractive && index < safeActiveProject && "past"
                     )}
                 >
-                  <div className="project-image-wrapper">
-                    <img
-                        src={item.image}
-                        alt={item.title}
-                        loading={index === 0 ? "eager" : "lazy"}
-                    />
-                  </div>
+                  <ProjectImage
+                      src={item.image}
+                      alt={item.title}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      enableHoverMotion={enableHoverMotion}
+                  />
 
                   <div className="project-mobile-meta">{renderProjectDetails(item)}</div>
                 </div>
@@ -120,13 +166,18 @@ export function ProjectsSection() {
               </div>
             </div>
 
-            <div
+            <motion.div
                 id="project-content"
-                key={`${safeActiveProject}-${isAnimating ? "animating" : "ready"}`}
-                className="fade-in"
+                key={project.id}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: shouldReduceMotion ? 0 : 0.24,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
             >
               {renderProjectDetails(project)}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

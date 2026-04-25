@@ -8,7 +8,7 @@ const sidebarItems = [
   { href: "/profile", label: "Профиль" },
   { href: "/profile/orders", label: "Мои заказы" },
   { href: "/favorites", label: "Избранное" },
-  { href: "/#contact-section", label: "Обратная связь" },
+  { href: "/вс", label: "Обратная связь" },
 ]
 
 interface ProfileSidebarProps {

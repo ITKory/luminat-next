@@ -19,7 +19,7 @@ export function Header({ variant = "light", onCartClick }: HeaderProps) {
   const [isHidden, setIsHidden] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isCompactViewport, setIsCompactViewport] = useState(false)
-  const lastScrollRef = useRef(0)
+  const lastScrollRef = useRef(10)
   const isProjectsActiveRef = useRef(false)
   const isSplitHomeHeader = pathname === "/" && !isSolid && !isCompactViewport && !isDark
   const isLightChrome = isDark || (pathname === "/" && !isSolid && !isSplitHomeHeader)

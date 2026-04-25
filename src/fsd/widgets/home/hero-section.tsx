@@ -3,7 +3,7 @@
 export function HeroSection() {
   return (
       <section id="hero-section" className="welcome relative" data-snap-section="true">
-        <div className="h-100 mt-32 pb-32 relative ">
+        <div className="h-100 relative ">
           <div className="df h-100 align-items-center">
             {/* Левая половина — видео */}
             <div className="video-wrapper position-relative w-50 h-100">
